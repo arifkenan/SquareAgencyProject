@@ -1,0 +1,114 @@
+﻿@page
+@model KareAjans.Pages.Actors.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
+
+    <!-- Icons font CSS-->
+    <link href="~/colorlib-regform-3/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/colorlib-regform-3/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="~/colorlib-regform-3/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/colorlib-regform-3/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="~/colorlib-regform-3/css/main.css" rel="stylesheet" media="all">
+    <style>
+        tr {
+            color: white;
+        }
+    </style>
+</head>
+
+<div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w780">
+        <div class="card card-3">
+
+
+
+            <div class="px-4 py-5 rounded text-white">
+<h1>Actors</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form asp-page="./Index" method="get">
+    <div class="form-group">
+        <input class="form-control my-2" type="text" placeholder="Search for actor by name..." name="SearchString" value="@Model.CurrentFilter" />
+        <input type="submit" value="Search" class="btn btn-primary mr-2" />
+        <a asp-page="./Index" class="my-auto">Back to list</a>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@(Model.CurrentSort == "ContractPrice" ? "ContractPrice_desc" : "ContractPrice")" asp-route-searchString="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Actor[0].ContractPrice)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@(Model.CurrentSort == "FirstName" ? "FirstName_desc" : "FirstName")" asp-route-searchString="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Actor[0].FirstName)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@(Model.CurrentSort == "LastName" ? "LastName_desc" : "LastName")" asp-route-searchString="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Actor[0].LastName)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@(Model.CurrentSort == "PhoneNumber" ? "PhoneNumber_desc" : "PhoneNumber")" asp-route-searchString="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Actor[0].PhoneNumber)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@(Model.CurrentSort == "Address" ? "Address_desc" : "Address")" asp-route-searchString="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Actor[0].Address)
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Actor)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
